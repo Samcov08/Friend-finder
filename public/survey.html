@@ -7,12 +7,13 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Baloo|Roboto" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container content">
         <h1><strong>Friend Finder</strong></h1>
-        <p>Take a quick survey to find your perfect friend! These questions are answered by the numbers 1 through 5. If you strongly disagree with the statement, your answer woul be 1, and if you strongly agree, put down 5. 3-4 would be netrual.</p>
+        <p>Take a quick survey to find your perfect friend! These questions are answered by the numbers 1 through 5. If you strongly disagree with the statement, your answer would be 1, and if you strongly agree, put down 5. 3-4 would be netrual.</p>
         <form>
             <div class="form-group">
                 <input id="name" type="text" class="form-control" placeholder="Name (Required)">
@@ -156,6 +157,7 @@
     </div>
 
 
+
     <script type="text/javascript">
         $("#submitBtn").on("click", function(event) {
             event.preventDefault();
@@ -183,9 +185,9 @@
                         $("#question10").val()
                     ]
                 };
-                var currentURL = window.location.origin;
+                console.log(newUser);
                 // Ajax call for receiving response after POST req
-                $.post(currentURL + "/api/friends", newUser, function(data) {
+                $.post("/api/friends", newUser, function(data) {
                     $("#bestFriend").text(data.name);
                     $("#bestFriendPhoto").attr("src", data.photo);
                     $("#bestFriendModal").modal("toggle");
@@ -208,8 +210,6 @@
         </div>
     </footer>
 
-    <script src="home.html"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 

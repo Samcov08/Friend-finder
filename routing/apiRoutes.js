@@ -1,4 +1,5 @@
-var friends = require("../data/friends");
+var friends = require("../app/data/friends.js");
+// console.log(friends);
 
 module.exports = function(app) {
     app.get("/api/friends", function(req, res) {
@@ -6,7 +7,7 @@ module.exports = function(app) {
     });
 
     app.post("/api/friends", function(req, res) {
-        console.log(req.body.scores);
+        console.log(req.body);
         var user = req.body;
 
         var bestFriend = 0;
@@ -21,7 +22,7 @@ module.exports = function(app) {
                 console.log(difference);
             }
             console.log("total: " + totalDifference);
-            if (totalDifference < minimumDifference) {
+            if (totalDifference < minDifference) {
                 bestFriend = i;
                 minDifference = totalDifference;
             }
@@ -30,6 +31,6 @@ module.exports = function(app) {
         console.log(friends[bestFriend]);
 
         friends.push(req.body);
-
+        res.json(friends[bestFriend]);
     });
 }

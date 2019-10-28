@@ -1,6 +1,7 @@
 // Dependencies
 var express = require('express');
-var bodyParser = require('body-parser');
+// path is built into node- no install needed
+// helps build the relative path for the html folder.
 var path = require('path');
 
 // Sets up the Express
@@ -12,15 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // For serving of static CSS
-app.use(express.static(__dirname + "/app/css"));
+app.use(express.static("/public"));
 
-app.use(bodyParser.json());
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // API and HTML routes
-require("./app/routing/apiRoutes.js")(app);
-require("./app/routing/htmlRoutes.js")(app);
+require("./routing/apiRoutes.js")(app);
+require("./routing/htmlRoutes.js")(app);
+
 
 // Starts the server to begin listening
 app.listen(PORT, function() {
